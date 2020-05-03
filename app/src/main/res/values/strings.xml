@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PoC</string>
+    <string name="debug_mode">Is app in debug mode: %1$b</string>
+    <string name="debug_mode_label">Debug mode</string>
+</resources>
