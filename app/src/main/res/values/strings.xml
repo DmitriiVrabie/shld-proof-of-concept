@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">PoC</string>
+    <string name="proof_of_concept">Proof of concept</string>
     <string name="debug_mode">Is app in debug mode: %1$b</string>
     <string name="debug_mode_label">Debug mode</string>
+    <string name="clear">Clear</string>
+    <string name="emulator_mode_label">Emulator mode</string>
 </resources>
