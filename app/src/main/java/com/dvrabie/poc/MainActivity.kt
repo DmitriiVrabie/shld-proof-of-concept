@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.dvrabie.shieldoid.isDebugMode
+import com.dvrabie.shieldoid.isEmulator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,10 +53,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        btnDebugMode.setOnClickListener { checkDebugMode() }
+        btnDebugMode.setOnClickListener {
+            adapter.addItem(getString(R.string.debug_mode, isDebugMode()))
+        }
+        btnEmulator.setOnClickListener {
+            adapter.addItem(getString(R.string.emulator_mode, isEmulator()))
+        }
     }
 
-    private fun checkDebugMode() {
-        adapter.addItem(getString(R.string.debug_mode, isDebugMode()))
-    }
 }
