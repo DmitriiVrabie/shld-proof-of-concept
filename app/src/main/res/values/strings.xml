@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">PoC</string>
     <string name="proof_of_concept">Proof of concept</string>
-    <string name="debug_mode">Is app in debug mode: %1$b</string>
-    <string name="emulator_mode">Is app running on emulator: %1$b</string>
-    <string name="debug_mode_label">Debug mode</string>
     <string name="clear">Clear</string>
+
+    <!--    Labels  -->
     <string name="emulator_mode_label">Emulator mode</string>
+    <string name="signature_verification_label">Signature</string>
+    <string name="root_access_label">Root access</string>
+    <string name="debug_mode_label">Debug mode</string>
+
+    <!--    Resources   -->
+    <string name="debug_mode_res">Is app in debug mode: %1$b</string>
+    <string name="emulator_mode_res">Is app running on emulator: %1$b</string>
+    <string name="root_access_res">Is root access granted: %1$b</string>
 </resources>

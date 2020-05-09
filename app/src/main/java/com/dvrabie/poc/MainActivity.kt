@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.dvrabie.shieldoid.checkAppSignature
 import com.dvrabie.shieldoid.isDebugMode
 import com.dvrabie.shieldoid.isEmulator
+import com.scottyab.rootbeer.RootBeer
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val statusesCode = "STATUSES_CODE"
     private val adapter = StatusAdapter(mutableListOf())
+    private val rootBeer by lazy { RootBeer(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,14 +54,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         rvStatus.adapter = adapter
+        rvStatus.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
 
     private fun setListeners() {
         btnDebugMode.setOnClickListener {
-            adapter.addItem(getString(R.string.debug_mode, isDebugMode()))
+            adapter.addItem(getString(R.string.debug_mode_res, isDebugMode()))
         }
         btnEmulator.setOnClickListener {
-            adapter.addItem(getString(R.string.emulator_mode, isEmulator()))
+            adapter.addItem(getString(R.string.emulator_mode_res, isEmulator()))
+        }
+        btnSignature.setOnClickListener { adapter.addItem(checkAppSignature()) }
+        btnRoot.setOnClickListener {
+            adapter.addItem(getString(R.string.root_access_res, rootBeer.isRooted))
         }
     }
 

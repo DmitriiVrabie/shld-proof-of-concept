@@ -6,25 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnDebugMode"
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/debug_mode_label"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
-        app:layout_constraintEnd_toStartOf="@id/btnEmulator"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnEmulator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/emulator_mode_label"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnDebugMode"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnDebugMode"
+                style="@style/TableButton"
+                android:text="@string/debug_mode_label" />
+
+            <Button
+                android:id="@+id/btnEmulator"
+                style="@style/TableButton"
+                android:text="@string/emulator_mode_label" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnSignature"
+                style="@style/TableButton"
+                android:text="@string/signature_verification_label" />
+
+            <Button
+                android:id="@+id/btnRoot"
+                style="@style/TableButton"
+                android:text="@string/root_access_label" />
+
+        </TableRow>
+    </TableLayout>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
