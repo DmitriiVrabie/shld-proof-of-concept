@@ -3,6 +3,7 @@ package com.dvrabie.shieldoid
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import android.util.Base64
 import java.security.MessageDigest
 
@@ -20,10 +21,21 @@ fun isEmulator(): Boolean = try {
     val goldfish = getSystemProperty("ro.hardware").contains("goldfish")
     val emu: Boolean = getSystemProperty("ro.kernel.qemu").isNotEmpty()
     val sdk = getSystemProperty("ro.product.model") == "sdk"
-    emu || goldfish || sdk
+    emu || goldfish || sdk || isProbablyAnEmulator()
 } catch (e: Exception) {
     false
 }
+
+private fun isProbablyAnEmulator() = Build.FINGERPRINT.contains("generic")
+        || Build.FINGERPRINT.contains("unknown")
+        || Build.MODEL.contains("google_sdk")
+        || Build.MODEL.contains("Emulator")
+        || Build.MODEL.contains("Android SDK built for x86")
+        || Build.BOARD == "QC_Reference_Phone" //bluestacks
+        || Build.MANUFACTURER.contains("Genymotion")
+        || Build.HOST.startsWith("Build") //MSI App Player
+        || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
+        || "google_sdk" == Build.PRODUCT
 
 @Throws(Exception::class)
 private fun getSystemProperty(name: String): String {
@@ -45,7 +57,7 @@ fun Context.checkAppSignature(): String {
             if (GENUINE_SIGNATURE == currentSignature) status = Status.VALID
         }
     } catch (e: Exception) {
-        //  assumes an issue in checking signature., but we let the caller decide on what to do.
+
     }
 
     return String.format(
